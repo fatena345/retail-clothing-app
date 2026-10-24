@@ -1,0 +1,9 @@
+import 'package:get/get.dart';
+import 'package:ui_test/view/product/product_details/product_details_controllers/product_details_controller.dart';
+
+class ProductDetailsBinding extends Bindings{
+  @override
+  void dependencies() {
+    Get.put(ProductDetailsController());
+  }
+}
