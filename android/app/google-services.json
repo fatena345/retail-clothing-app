@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "475183418552",
+    "project_id": "geeta-c4b2e",
+    "storage_bucket": "geeta-c4b2e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475183418552:android:4dd27b32c4d963244f384d",
+        "android_client_info": {
+          "package_name": "com.example.geeta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3HK-tcyhUid4cjMAIdvlEaV2C1T0TpyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

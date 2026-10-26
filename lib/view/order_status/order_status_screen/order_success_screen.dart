@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:geeta/core/constants/app_images.dart';
 import 'package:get/get.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_fonts.dart';
-import 'package:ui_test/core/constants/app_string.dart';
-import 'package:ui_test/core/constants/app_values.dart';
-import 'package:ui_test/core/routes/app_routes.dart';
-import 'package:ui_test/widgets/custom_elevated_button.dart';
-import 'package:ui_test/widgets/custom_text.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_fonts.dart';
+import 'package:geeta/core/constants/app_string.dart';
+import 'package:geeta/core/constants/app_values.dart';
+import 'package:geeta/core/routes/app_routes.dart';
+import 'package:geeta/widgets/custom_elevated_button.dart';
+import 'package:geeta/widgets/custom_text.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
   const OrderSuccessScreen({super.key});
@@ -29,11 +30,7 @@ class OrderSuccessScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            CircleAvatar(
-              radius: 65,
-              backgroundColor: const Color(0xFFA1E3C4),
-              child: const Icon(Icons.check, size: 65, color: Color(0xFF2CB67D)),
-            ),
+            Image.asset(AppImages.successStatus),
             SizedBox(height: AppHeight.h50),
             CustomText(
               text: AppString.congratsPlacingOrder,

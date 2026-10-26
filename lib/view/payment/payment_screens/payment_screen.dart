@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:geeta/core/services/firebase/notifications_service.dart';
 import 'package:get/get.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_fonts.dart';
-import 'package:ui_test/core/constants/app_string.dart';
-import 'package:ui_test/core/constants/app_values.dart';
-import 'package:ui_test/core/routes/app_routes.dart';
-import 'package:ui_test/widgets/custom_elevated_button.dart';
-import 'package:ui_test/widgets/custom_text.dart';
-import 'package:ui_test/widgets/form/custom_input_field.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_fonts.dart';
+import 'package:geeta/core/constants/app_string.dart';
+import 'package:geeta/core/constants/app_values.dart';
+import 'package:geeta/core/routes/app_routes.dart';
+import 'package:geeta/widgets/custom_elevated_button.dart';
+import 'package:geeta/widgets/custom_text.dart';
+import 'package:geeta/widgets/form/custom_input_field.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -138,9 +139,14 @@ class PaymentScreen extends StatelessWidget {
             CustomElevatedButton(
               width: double.infinity,
               color: AppColors.primary,
-              onPressed: () {
-                Get.toNamed(AppRoutes.success);
-              },
+              onPressed: () async {
+  await Get.find<NotificationsService>().showLocal(
+    title: AppString.paymentSuccessTitle,
+    body: AppString.paymentSuccessBody,
+    data: {'type': 'order'},
+  );
+  Get.toNamed(AppRoutes.success);
+},
               child: CustomText(
                 text: AppString.useThisCard,
                 color: AppColors.white,

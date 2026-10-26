@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_values.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_values.dart';
 
 import 'default_values.dart';
 

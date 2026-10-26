@@ -461,6 +461,7 @@ class AppRadius {
   static double r25 = 25.0.r;
   static double r28 = 28.0.r;
   static double r30 = 30.0.r;
+  static double r32 = 32.0.r;
   static double r35 = 35.0.r;
   static double r40 = 40.0.r;
   static double r45 = 45.0.r;

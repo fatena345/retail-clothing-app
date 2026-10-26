@@ -1,13 +1,29 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geeta/core/services/firebase/notifications_service.dart';
+import 'package:geeta/core/services/storage_manager.dart';
+import 'package:geeta/core/services/token_storage.dart';
+import 'package:geeta/firebase_options.dart';
 import 'package:get/get.dart';
-import 'package:ui_test/core/bindings/initial_bindings.dart';
-import 'package:ui_test/core/routes/app_pages.dart';
-import 'package:ui_test/core/routes/app_routes.dart';
-import 'package:ui_test/view/home/home_screens/home_screen.dart';
+import 'package:geeta/core/bindings/initial_bindings.dart';
+import 'package:geeta/core/routes/app_pages.dart';
+import 'package:geeta/core/routes/app_routes.dart';
 
 
-void main() {
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final storage = await Get.putAsync(() => StorageManager().init());
+  await Get.putAsync(() => TokenStorage(storage).init());
+
+  final notifications = Get.put(NotificationsService());
+  await notifications.initialize();
   runApp(const MyApp());
 }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/default_values.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/default_values.dart';
 
 import '../../core/constants/app_fonts.dart';
 

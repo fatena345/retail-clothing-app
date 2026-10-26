@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_string.dart';
-import 'package:ui_test/core/constants/app_values.dart';
-import 'package:ui_test/core/constants/default_values.dart';
-import 'package:ui_test/core/routes/app_routes.dart';
-import 'package:ui_test/view/home/home_controllers/home_controller.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_string.dart';
+import 'package:geeta/core/constants/app_values.dart';
+import 'package:geeta/core/constants/default_values.dart';
+import 'package:geeta/core/routes/app_routes.dart';
+import 'package:geeta/view/home/home_controllers/home_controller.dart';
 
-import 'package:ui_test/view/home/home_screens/widgets/filter_section.dart';
-import 'package:ui_test/view/home/home_screens/widgets/header_section.dart';
-import 'package:ui_test/view/home/home_screens/widgets/tabs.dart';
-import 'package:ui_test/widgets/custom_text.dart';
-import 'package:ui_test/widgets/products_grid.dart';
-
-import '../../../core/constants/app_fonts.dart';
+import 'package:geeta/view/home/home_screens/widgets/filter_section.dart';
+import 'package:geeta/view/home/home_screens/widgets/header_section.dart';
+import 'package:geeta/view/home/home_screens/widgets/tabs.dart';
+import 'package:geeta/widgets/custom_text.dart';
+import 'package:geeta/widgets/products_grid.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -36,7 +35,10 @@ class HomeScreen extends StatelessWidget {
         builder: (controller) {
           return ModalProgressHUD(
             inAsyncCall: controller.isDeleting,
-            progressIndicator: const CircularProgressIndicator(color: AppColors.primary),
+            progressIndicator: SpinKitThreeBounce(
+  color: AppColors.primary,
+  size: DefaultValues.indicatorSize,
+),
             child: Padding(
               padding: DefaultValues.defaultPadding,
               child: Column(
@@ -50,10 +52,11 @@ class HomeScreen extends StatelessWidget {
 
                   Expanded(
                     child: controller.status.isLoading
-                        ? const Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.primary,
-                      ),
+                        ?  Center(
+                      child: SpinKitThreeBounce(
+  color: AppColors.primary,
+  size: DefaultValues.indicatorSize,
+),
                     )
                         : controller.status.isNoData
                         ? Center(child: CustomText(text: AppString.noData))

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_string.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_string.dart';
 
 import '../core/constants/app_fonts.dart';
 

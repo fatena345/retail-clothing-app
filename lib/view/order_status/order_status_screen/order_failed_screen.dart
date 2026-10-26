@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:geeta/core/constants/app_images.dart';
 import 'package:get/get.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_fonts.dart';
-import 'package:ui_test/core/constants/app_string.dart';
-import 'package:ui_test/core/constants/app_values.dart';
-import 'package:ui_test/core/routes/app_routes.dart';
-import 'package:ui_test/widgets/custom_elevated_button.dart';
-import 'package:ui_test/widgets/custom_text.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_fonts.dart';
+import 'package:geeta/core/constants/app_string.dart';
+import 'package:geeta/core/constants/app_values.dart';
+import 'package:geeta/core/routes/app_routes.dart';
+import 'package:geeta/widgets/custom_elevated_button.dart';
+import 'package:geeta/widgets/custom_text.dart';
 
 class OrderFailedScreen extends StatelessWidget {
   const OrderFailedScreen({super.key});
@@ -29,16 +30,7 @@ class OrderFailedScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            CircleAvatar(
-              radius: AppRadius.r65,
-              backgroundColor: AppColors.background,
-              child:  CustomText(
-                text: '!',
-                fontSize: AppFontSize.s60,
-                color: AppColors.red,
-                fontWeight: AppFontWeight.bold,
-              ),
-            ),
+            Image.asset(AppImages.failedStatus),
             SizedBox(height: AppHeight.h40),
             CustomText(
               text: AppString.failedPlacedOrderTitle,

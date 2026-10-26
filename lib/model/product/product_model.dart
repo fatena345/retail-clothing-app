@@ -1,58 +1,48 @@
-import '../category/category_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductModel {
-  final int id;
-  final String title;
-  final String slug;
-  final num price;
-  final String description;
-  final CategoryModel category;
-  final List<String> images;
-
-  ProductModel({
-    required this.id,
-    required this.title,
-    required this.slug,
+  const ProductModel({
+    this.id = '',
+    required this.name,
     required this.price,
     required this.description,
-    required this.category,
-    required this.images,
+    required this.categoryId,
+    required this.imageUrl,
+    this.createdAt,
   });
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) {
-    List<String> cleanImages = [];
-    if (json['images'] != null) {
-      for (var img in json['images']) {
-        String s = img.toString().replaceAll(RegExp(r'[\[\]\\"]'), '').trim();
-        if (s.startsWith('http')) {
-          cleanImages.add(s);
-        }
-      }
-    }
-    if (cleanImages.isEmpty) {
-      cleanImages.add("https://via.placeholder.com/300");
-    }
+  final String id; // فاضي عند الإنشاء، Firestore بيولّده
+  final String name;
+  final double price;
+  final String description;
+  final int categoryId;
+  final String imageUrl;
+  final DateTime? createdAt;
 
-    return ProductModel(
-      id: json['id'] ?? 0,
-      title: json['title'] ?? '',
-      slug: json['slug'] ?? '',
-      price: json['price'] ?? 0,
-      description: json['description'] ?? '',
-      category: json['category'] != null
-          ? CategoryModel.fromJson(json['category'])
-          : CategoryModel(id: 0, name: 'General', slug: 'general', image: ''),
-      images: cleanImages,
-    );
-  }
+  factory ProductModel.fromMap(Map<String, dynamic> map) => ProductModel(
+        id: map['id'] as String,
+        name: map['name'] as String? ?? '',
+        price: (map['price'] as num?)?.toDouble() ?? 0,
+        description: map['description'] as String? ?? '',
+        categoryId: (map['categoryId'] as num?)?.toInt() ?? 1,
+        imageUrl: map['imageUrl'] as String? ?? '',
+        createdAt: (map['createdAt'] as Timestamp?)?.toDate(),
+      );
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'title': title,
-    'slug': slug,
-    'price': price,
-    'description': description,
-    'category': category.toJson(),
-    'images': images,
-  };
+  Map<String, dynamic> toCreateMap() => {
+        'name': name,
+        'price': price,
+        'description': description,
+        'categoryId': categoryId,
+        'imageUrl': imageUrl,
+        'createdAt': FieldValue.serverTimestamp(),
+      };
+
+  Map<String, dynamic> toUpdateMap() => {
+        'name': name,
+        'price': price,
+        'description': description,
+        'categoryId': categoryId,
+        'imageUrl': imageUrl,
+      };
 }

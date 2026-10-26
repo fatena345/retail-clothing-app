@@ -1,21 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:geeta/core/constants/default_values.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_string.dart';
-import 'package:ui_test/core/constants/app_values.dart';
-import 'package:ui_test/core/routes/app_routes.dart';
-import 'package:ui_test/view/auth/register/register_controllers/register_controller.dart';
-import 'package:ui_test/view/auth/widgets/auth_form.dart';
-import 'package:ui_test/view/auth/widgets/auth_header.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_string.dart';
+import 'package:geeta/core/constants/app_values.dart';
+import 'package:geeta/core/routes/app_routes.dart';
+import 'package:geeta/view/auth/register/register_controllers/register_controller.dart';
+import 'package:geeta/view/auth/widgets/auth_form.dart';
+import 'package:geeta/view/auth/widgets/auth_header.dart';
 
-class RegisterScreen extends StatelessWidget {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
-  final TextEditingController name = TextEditingController();
+class RegisterScreen extends StatefulWidget {
 
   RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  final TextEditingController email = TextEditingController();
+
+  final TextEditingController password = TextEditingController();
+
+  final TextEditingController name = TextEditingController();
+
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    name.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +45,10 @@ class RegisterScreen extends StatelessWidget {
         return Scaffold(
           body: ModalProgressHUD(
             inAsyncCall: controller.status.isLoading,
-            progressIndicator: const CircularProgressIndicator(color: AppColors.primary),
+            progressIndicator: SpinKitThreeBounce(
+  color: AppColors.primary,
+  size: DefaultValues.indicatorSize,
+),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +69,7 @@ class RegisterScreen extends StatelessWidget {
                       if (name.text.trim().isEmpty ||
                           email.text.trim().isEmpty ||
                           password.text.trim().isEmpty) {
-                        Get.snackbar('Validation', 'Please fill all fields');
+                        Get.snackbar(AppString.validation, AppString.validationHint);
                         return;
                       }
 
@@ -57,12 +80,12 @@ class RegisterScreen extends StatelessWidget {
                       );
 
                       if (success) {
-                        Get.snackbar('Success', 'Registered successfully');
+                        Get.snackbar(AppString.success, AppString.registerSuccess);
                         await Future.delayed(const Duration(milliseconds: 500));
                         Get.offAllNamed(AppRoutes.home);
                       } else {
                         Get.snackbar(
-                          'Failed',
+                          AppString.failed,
                           controller.status.message ??
                               (controller.status.isNoInternet
                                   ? AppString.noInternet

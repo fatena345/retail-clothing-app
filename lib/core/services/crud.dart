@@ -4,8 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:ui_test/core/class/status_class.dart';
-import 'package:ui_test/core/services/storage_manager.dart';
+import 'package:geeta/core/class/status_class.dart';
+import 'package:geeta/core/services/storage_manager.dart';
 
 import '../constants/app_keys.dart';
 import '../helpful_functions/check_internet_connection.dart';
@@ -127,10 +127,10 @@ class Crud extends GetxService {
       final accessToken = data['accessToken'];
 
       if (accessToken != null) {
-        final storage = await StorageManager.getInstance();
+        final storage = Get.find<StorageManager>();
 
         await storage.saveData(
-          key: AppKeys.token,
+          key: AppKeys.accessToken,
           value: accessToken,
         );
       }

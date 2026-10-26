@@ -22,10 +22,10 @@ class AppColors {
   static const Color red = Color(0xFFBF0D0D);
    static const Color amber  =Colors.amber;
 
-  static const Color g1 =Color(0xFF6342E8);
-  // gradient of menu in home screen
-  static const Color g2 =Color(0xFF7F77FE);
-  static const Color g3 =Color(0xFFA573FF);
+ 
+
+  static const Color profileGradientStart = Color(0xFF6F7BF7);
+static const Color profileGradientEnd = Color(0xFFA96DFF);
 
 
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_fonts.dart';
-import 'package:ui_test/core/constants/app_string.dart';
-import 'package:ui_test/core/constants/app_values.dart';
-import 'package:ui_test/core/routes/app_routes.dart';
-import 'package:ui_test/view/splash/splash_screens/widgets/dot_indicator.dart';
-import 'package:ui_test/widgets/custom_elevated_button.dart';
-import 'package:ui_test/widgets/custom_text.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_fonts.dart';
+import 'package:geeta/core/constants/app_string.dart';
+import 'package:geeta/core/constants/app_values.dart';
+import 'package:geeta/core/routes/app_routes.dart';
+import 'package:geeta/view/splash/splash_screens/widgets/dot_indicator.dart';
+import 'package:geeta/widgets/custom_elevated_button.dart';
+import 'package:geeta/widgets/custom_text.dart';
 
 import '../../../core/constants/app_images.dart';
 

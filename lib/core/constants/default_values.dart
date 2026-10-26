@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ui_test/core/constants/app_values.dart';
+import 'package:geeta/core/constants/app_values.dart';
 
 class DefaultValues {
 
@@ -16,8 +16,11 @@ class DefaultValues {
 
 
  // size of icon
- static double iconInputFeildSize = AppSize.s18;
-  static double iconSize = AppSize.s30;
+ static double iconInputFeildSize = AppRadius.r18;
+  static double iconSize = AppRadius.r30;
+  
+  // size of indicator
+  static double indicatorSize = AppRadius.r25;
 
 
  //auth screens  padding

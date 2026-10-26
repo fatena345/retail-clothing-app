@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ui_test/core/constants/app_colors.dart';
-import 'package:ui_test/core/constants/app_images.dart';
-import 'package:ui_test/core/constants/app_string.dart';
-import 'package:ui_test/core/constants/app_values.dart';
-import 'package:ui_test/core/routes/app_routes.dart';
-import 'package:ui_test/model/product/product_model.dart';
-import 'package:ui_test/view/home/home_controllers/home_controller.dart';
-import 'package:ui_test/widgets/custom_text.dart';
-import 'package:ui_test/widgets/formatted_price.dart';
+import 'package:geeta/core/constants/app_colors.dart';
+import 'package:geeta/core/constants/app_images.dart';
+import 'package:geeta/core/constants/app_string.dart';
+import 'package:geeta/core/constants/app_values.dart';
+import 'package:geeta/core/routes/app_routes.dart';
+import 'package:geeta/model/product/product_model.dart';
+import 'package:geeta/view/home/home_controllers/home_controller.dart';
+import 'package:geeta/widgets/custom_text.dart';
+import 'package:geeta/widgets/formatted_price.dart';
 
 import '../core/controllers/favorite/favorite_controller.dart';
 
@@ -61,7 +61,7 @@ class ProductGridCard extends StatelessWidget {
                   height: AppHeight.h170,
                   width: double.infinity,
                   child: Image.network(
-                    product.images.first,
+                    product.imageUrl,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Image.asset(
@@ -96,7 +96,7 @@ class ProductGridCard extends StatelessWidget {
           Column(
             children: [
               CustomText(
-                text: product.title,
+                text: product.name,
                 align: TextAlign.center,
                 maxLignes: 1,
                 textOverflow: TextOverflow.ellipsis,

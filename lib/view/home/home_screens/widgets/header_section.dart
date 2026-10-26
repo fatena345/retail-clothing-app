@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ui_test/core/constants/app_icons.dart';
-import 'package:ui_test/core/constants/app_values.dart';
+import 'package:geeta/core/constants/app_icons.dart';
+import 'package:geeta/core/constants/app_values.dart';
 import '../../../../core/constants/app_fonts.dart';
 import '../../../../core/constants/app_string.dart';
 import '../../../../core/routes/app_routes.dart';

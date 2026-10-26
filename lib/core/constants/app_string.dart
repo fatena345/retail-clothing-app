@@ -26,15 +26,19 @@ class AppString {
   // favorite screen
   static const String favorite = 'Favorite';
   static const String addAllToCart = 'ADD ALL TO CART';
+  static const String removedSuccess = 'removed from favorites';
+  static const String addedToFavorite = 'added to favorites';
+
 
   // handle error states
   static const String noData = 'No Data Available';
   static const String wrong = 'Something went wrong';
   static const String antherError = 'Another Error occured';
   static const String noInternet = 'No Internet Connection';
-  static const String removedSuccess = 'removed from favorites';
-  static const String addedToFavorite = 'added to favorites';
+  static const String loginFailed = 'Login failed';
+  static const String signupFailed = 'Signup failed';
 
+  
   // create & delete product
   static const String addNewProduct = 'Add New Product';
   static const String productTitle = 'Product Title';
@@ -48,17 +52,21 @@ class AppString {
   static const String productDeletedSuccess = 'Product deleted successfully!';
   static const String failedDeleteProduct = 'Failed to delete product';
   static const String imageUrl = 'Image URL';
-
+  static const String permissionNotExist = "you don't have permission to add product";
+  static const String alert = "Alert";
   static const String findProducts = 'Find Products';
   static const String geetaCollection = 'GEETA COLLECTION';
   static const String itemsFoundFor = 'Items found for';
-
+  static const String done = "Done";
+  static const String  inValidCategoryId = "CategoryId is invalid";
+  static const String  inValidPrice = "Price is invalid";
   static const String deleteProduce = 'Delete Product';
   static const String deleteMessage = 'Are you sure you want to delete this product?';
   static const String delete = 'Delete';
   static const String cancel = 'Cancel';
   static const String geetaMens = 'Geeta Mens';
   static const String addedToCart = ' added to cart!';
+  static const String cart  = 'Cart';
 
   // splash screen
   static const String shopNow = 'SHOP NOW';
@@ -81,6 +89,11 @@ class AppString {
   static const String forgotPassword = 'Forgot Password?';
   static const String notRegistered = 'Not registered yet';
   static const String createAccount = 'Create an Account';
+  static const String loginSuccessful = 'Login successful';
+  static const String validation = 'Validation';
+  static const String validationHint = 'Please fill all fields';
+  static const String success = 'Success';
+  static const String failed = 'Failed';
 
   // hints
   static const Map<String, String> hints = {
@@ -105,6 +118,7 @@ class AppString {
   static const String yourName = 'your Name';
   static const String agreeToReceiveEmail =
       'By enjoying I agree to receive emails from Geeta!';
+  static const String registerSuccess = 'Registered successfully';
 
   // cart
   static const String myCart = 'My Cart';
@@ -155,4 +169,19 @@ class AppString {
   static const String help = 'Help';
   static const String about = 'About';
   static const String logout = 'LOG OUT';
+
+
+  //notifications
+  
+static const String loginSuccessTitle = 'Login Successful';
+
+static String loginSuccessBody(String? name) =>
+    name == null || name.isEmpty
+        ? 'Welcome back! You have successfully logged in.'
+        : 'Welcome back, $name! You have successfully logged in.';
+
+static const String paymentSuccessTitle = 'Payment Successful 🎉';
+static const String paymentSuccessBody =
+    'Your order has been confirmed. Thank you for shopping with us!';
+
 }

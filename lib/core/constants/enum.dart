@@ -1,0 +1,1 @@
+enum AppNotificationChannel { orders, account }

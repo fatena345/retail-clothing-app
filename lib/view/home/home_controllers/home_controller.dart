@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:geeta/core/constants/firestore_collections.dart';
 import 'package:get/get.dart';
-import 'package:ui_test/core/class/status_class.dart';
-import 'package:ui_test/core/constants/api_endpoints.dart';
-import 'package:ui_test/core/services/crud.dart';
-import 'package:ui_test/model/product/product_model.dart';
+import 'package:geeta/core/class/status_class.dart';
+import 'package:geeta/core/services/firebase/firestore_service.dart';
+import 'package:geeta/model/product/product_model.dart';
 
 class HomeController extends GetxController {
+  final FirestoreService _firestore = Get.find();
+
   List<ProductModel> products = [];
   StatusClass status = StatusClass.loading;
   bool isDeleting = false;
@@ -17,50 +18,72 @@ class HomeController extends GetxController {
     getProducts();
   }
 
+ 
   Future<void> getProducts() async {
     status = StatusClass.loading;
     update();
 
-    final result = await Crud.getData(url: ApiEndpoints.products);
+    try {
+      final data = await _firestore.getCollectionData(
+        collectionPath: FirestoreCollections.products,
+        query: (q) => q.orderBy('createdAt', descending: true),
+      );
 
-    result.fold(
-          (left) {
-        status = left;
-        update();
-      },
-          (right) {
-        if (right is List) {
-          products = right.map((item) => ProductModel.fromJson(item)).toList();
-          status = products.isEmpty ? StatusClass.noData : StatusClass.success;
-        } else {
-          status = StatusClass.noData;
-        }
-        update();
-      },
-    );
+      products = data.map(ProductModel.fromMap).toList();
+      status = products.isEmpty ? StatusClass.noData : StatusClass.success;
+    } catch (e) {
+      debugPrint('getProducts error: $e');
+      status = StatusClass.anotherError(message: 'تعذر تحميل المنتجات');
+    }
+
+    update();
   }
 
-  Future<bool> deleteProduct(int productId) async {
+
+
+
+  Future<bool> updateProduct(ProductModel product) async {
+    try {
+      await _firestore.updateDocument(
+        collectionPath: FirestoreCollections.products,
+        documentId: product.id,
+        data: product.toUpdateMap(),
+      );
+
+      final index = products.indexWhere((p) => p.id == product.id);
+      if (index != -1) {
+        products[index] = product;
+        update();
+      }
+      return true;
+    } catch (e) {
+      debugPrint('updateProduct error: $e');
+      return false;
+    }
+  }
+
+
+
+  Future<bool> deleteProduct(String productId) async {
+    if (isDeleting) return false;
     isDeleting = true;
     update();
 
-    final result = await Crud.deleteData(
-      url: '${ApiEndpoints.products}$productId',
-    );
+    var success = false;
+    try {
+      await _firestore.deleteDocument(
+        collectionPath: FirestoreCollections.products,
+        documentId: productId,
+      );
+      products.removeWhere((p) => p.id == productId);
+      if (products.isEmpty) status = StatusClass.noData;
+      success = true;
+    } catch (e) {
+      debugPrint('deleteProduct error: $e');
+    }
 
-    return result.fold(
-          (left) {
-        isDeleting = false;
-        update();
-        return false;
-      },
-          (right) {
-        products.removeWhere((item) => item.id == productId);
-        isDeleting = false;
-        update();
-        return true;
-      },
-    );
+    isDeleting = false;
+    update();
+    return success;
   }
-
 }

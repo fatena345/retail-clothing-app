@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ui_test/core/constants/app_values.dart';
-import 'package:ui_test/widgets/product_grid_card.dart';
+import 'package:geeta/core/constants/app_values.dart';
+import 'package:geeta/widgets/product_grid_card.dart';
 
 import '../model/product/product_model.dart';
 
