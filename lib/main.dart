@@ -1,12 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geeta/core/services/firebase/firebase_auth_service.dart';
 import 'package:geeta/core/services/firebase/notifications_service.dart';
 import 'package:geeta/core/services/storage_manager.dart';
 import 'package:geeta/core/services/token_storage.dart';
 import 'package:geeta/firebase_options.dart';
 import 'package:get/get.dart';
-import 'package:geeta/core/bindings/initial_bindings.dart';
+import 'package:geeta/bindings/initial_bindings.dart';
 import 'package:geeta/core/routes/app_pages.dart';
 import 'package:geeta/core/routes/app_routes.dart';
 
@@ -24,11 +25,13 @@ void main() async{
 
   final notifications = Get.put(NotificationsService());
   await notifications.initialize();
-  runApp(const MyApp());
+
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+   const MyApp({super.key,});
+
 
   // This widget is the root of your application.
   @override
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
             getPages: AppPages.getPages,
             initialBinding: InitialBindings(),
             defaultTransition: Transition.fadeIn,
-            debugShowCheckedModeBanner: true,
+            debugShowCheckedModeBanner: false,
           //home: HomeScreen(),
         ),
 

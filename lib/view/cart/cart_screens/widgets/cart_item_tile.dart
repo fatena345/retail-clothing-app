@@ -5,7 +5,7 @@ import 'package:geeta/core/constants/app_fonts.dart';
 import 'package:geeta/core/constants/app_images.dart';
 import 'package:geeta/core/constants/app_string.dart';
 import 'package:geeta/core/constants/app_values.dart';
-import 'package:geeta/core/controllers/cart/cart_controller.dart';
+import 'package:geeta/view/cart/cart_controller/cart_controller.dart';
 import 'package:geeta/model/cart/cart_item_model.dart';
 import 'package:geeta/view/cart/cart_screens/widgets/quantity_box.dart';
 import 'package:geeta/widgets/custom_text.dart';

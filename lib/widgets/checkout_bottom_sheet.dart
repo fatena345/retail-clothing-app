@@ -128,13 +128,13 @@ class CheckoutBottomSheet extends StatelessWidget {
               children: [
                 if (isCard)
                   Container(
-                    width: 30,
-                    height: 20,
+                    width: AppWidth.w30,
+                    height: AppHeight.h20,
                     decoration: BoxDecoration(
                       color: Colors.blue,
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(AppRadius.r4),
                     ),
-                    child: const Icon(Icons.credit_card, size: 16, color: Colors.white),
+                    child: Icon(Icons.credit_card, size:AppRadius.r16, color: AppColors.white),
                   )
                 else
                   CustomText(
@@ -144,7 +144,7 @@ class CheckoutBottomSheet extends StatelessWidget {
                     fontSize: isTotal ? AppFontSize.s16 : AppFontSize.s14,
                   ),
                 SizedBox(width: AppWidth.w8),
-                const Icon(Icons.arrow_forward_ios, size: 14, color: AppColors.primary),
+                 Icon(Icons.arrow_forward_ios, size: AppRadius.r14, color: AppColors.primary),
               ],
             ),
           ],

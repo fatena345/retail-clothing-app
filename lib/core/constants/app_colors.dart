@@ -26,6 +26,8 @@ class AppColors {
 
   static const Color profileGradientStart = Color(0xFF6F7BF7);
 static const Color profileGradientEnd = Color(0xFFA96DFF);
+static const Color paymentCardGradientStart = Color(0xFF6B42F8);
+static const Color paymentCardGradientEnd = Color(0xFF8863FA);
 
 
 

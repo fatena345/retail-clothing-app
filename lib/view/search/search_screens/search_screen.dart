@@ -6,7 +6,7 @@ import 'package:geeta/core/constants/app_colors.dart';
 import 'package:geeta/core/constants/app_fonts.dart';
 import 'package:geeta/core/constants/app_string.dart';
 import 'package:geeta/core/constants/app_values.dart';
-import 'package:geeta/view/home/home_controllers/home_controller.dart';
+import 'package:geeta/view/home/home_section/home_controllers/home_controller.dart';
 import 'package:geeta/widgets/custom_text.dart';
 import 'package:geeta/widgets/products_grid.dart';
 

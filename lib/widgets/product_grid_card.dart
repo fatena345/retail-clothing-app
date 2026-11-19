@@ -6,11 +6,11 @@ import 'package:geeta/core/constants/app_string.dart';
 import 'package:geeta/core/constants/app_values.dart';
 import 'package:geeta/core/routes/app_routes.dart';
 import 'package:geeta/model/product/product_model.dart';
-import 'package:geeta/view/home/home_controllers/home_controller.dart';
+import 'package:geeta/view/home/home_section/home_controllers/home_controller.dart';
 import 'package:geeta/widgets/custom_text.dart';
 import 'package:geeta/widgets/formatted_price.dart';
 
-import '../core/controllers/favorite/favorite_controller.dart';
+import '../view/favorite/favorite_controllers/favorite_controller.dart';
 
 class ProductGridCard extends StatelessWidget {
   final ProductModel product;

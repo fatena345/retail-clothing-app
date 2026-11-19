@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:geeta/view/splash/splash_controllers/splash_controller.dart';
 import 'package:get/get.dart';
 import 'package:geeta/core/constants/app_colors.dart';
 import 'package:geeta/core/constants/app_fonts.dart';
 import 'package:geeta/core/constants/app_string.dart';
 import 'package:geeta/core/constants/app_values.dart';
-import 'package:geeta/core/routes/app_routes.dart';
 import 'package:geeta/view/splash/splash_screens/widgets/dot_indicator.dart';
 import 'package:geeta/widgets/custom_elevated_button.dart';
 import 'package:geeta/widgets/custom_text.dart';
 
 import '../../../core/constants/app_images.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends GetView<SplashController> {
   const SplashScreen({super.key});
 
   @override
@@ -34,7 +34,8 @@ class SplashScreen extends StatelessWidget {
               fontSize: AppFontSize.s104,),
             CustomElevatedButton(
                 onPressed: (){
-                  Get.toNamed(AppRoutes.welcome);
+
+                  controller.goNext();
                 },
 
                 isSmallButton: true,

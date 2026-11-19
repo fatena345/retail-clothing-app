@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geeta/core/constants/default_values.dart';
+import 'package:geeta/core/class/default_values.dart';
 
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_values.dart';

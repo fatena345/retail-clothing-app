@@ -6,7 +6,7 @@ import 'package:geeta/core/constants/app_icons.dart';
 import 'package:geeta/core/constants/app_images.dart';
 import 'package:geeta/core/constants/app_string.dart';
 import 'package:geeta/core/constants/app_values.dart';
-import 'package:geeta/core/constants/default_values.dart';
+import 'package:geeta/core/class/default_values.dart';
 import 'package:geeta/core/routes/app_routes.dart';
 import 'package:geeta/widgets/custom_text.dart';
 
@@ -30,7 +30,6 @@ class AuthHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-     // height: height,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage( AppImages.authBackground,),

@@ -42,17 +42,17 @@ class PaymentScreen extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.all(AppPaddingWidth.p25),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF6B42F8), Color(0xFF8863FA)],
+                gradient:  LinearGradient(
+                  colors: [AppColors.paymentCardGradientStart, AppColors.paymentCardGradientEnd],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(AppRadius.r20),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF6B42F8).withAlpha(80),
-                    blurRadius: 15,
-                    offset: const Offset(0, 8),
+                    color: AppColors.paymentCardGradientStart.withAlpha(80),
+                    blurRadius: AppRadius.r15,
+                    offset: Offset(0,AppHeight.h8 ),
                   ),
                 ],
               ),
@@ -64,11 +64,11 @@ class PaymentScreen extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        CircleAvatar(radius: 12, backgroundColor: Colors.red.withAlpha(200)),
+                        CircleAvatar(radius: AppRadius.r12, backgroundColor: Colors.red.withAlpha(200)),
                         Transform.translate(
-                          offset: const Offset(-8, 0),
+                          offset:  Offset(AppWidth.w_8, 0),
                           child: CircleAvatar(
-                            radius: 12,
+                            radius: AppRadius.r12,
                             backgroundColor: Colors.amber.withAlpha(200),
                           ),
                         ),

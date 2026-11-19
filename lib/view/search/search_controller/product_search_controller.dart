@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:geeta/model/product/product_model.dart';
-import 'package:geeta/view/home/home_controllers/home_controller.dart';
+import 'package:geeta/view/home/home_section/home_controllers/home_controller.dart';
 
 class ProductSearchController extends GetxController {
   final HomeController _home = Get.find();

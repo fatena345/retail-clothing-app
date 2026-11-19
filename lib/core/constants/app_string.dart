@@ -16,11 +16,6 @@ class AppString {
   static const String noDescription = 'No description';
   static const String selectSize = 'SELECT SIZE';
   static const String addToCart = 'ADD TO CART';
-  static const String small = 'S';
-  static const String medium = 'M';
-  static const String large = 'L';
-  static const String xLarge = 'XL';
-  static const String xxLarge = 'XXL';
   static const String detail = 'detail';
 
   // favorite screen
@@ -110,6 +105,8 @@ class AppString {
     'expiry date': '07/21',
     'cvc': '474',
     'search': 'Hoodies',
+    'commericalNmae' : 'Enter your commerical name',
+    'commericalAccount' : 'Enter your commerical account',
   };
 
   // register screen
@@ -119,6 +116,13 @@ class AppString {
   static const String agreeToReceiveEmail =
       'By enjoying I agree to receive emails from Geeta!';
   static const String registerSuccess = 'Registered successfully';
+  static const String commericalName = 'Commerical Name';
+  static const String commericalAccount = 'Commerical Account';
+  static const String storeLicense = 'Store License';
+  static const String note = 'Note';
+  static const String dataStoredLocally = 'Your data is stored locally on your device and will not be shared with any third party.';
+  static const String error = 'Error';
+  static const String failedToStoreData = 'Failed to store your data locally. Please try again.';
 
   // cart
   static const String myCart = 'My Cart';
@@ -184,4 +188,19 @@ static const String paymentSuccessTitle = 'Payment Successful 🎉';
 static const String paymentSuccessBody =
     'Your order has been confirmed. Thank you for shopping with us!';
 
+
+// validator messages error
+// Email Validation
+static const String emailRequired =
+    'Please enter your email address';
+
+static const String invalidEmail =
+    'Please enter a valid email address (e.g. name@example.com)';
+
+// Password Validation
+static const String passwordRequired =
+    'Please enter your password';
+
+static const String invalidPassword =
+    'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.';
 }

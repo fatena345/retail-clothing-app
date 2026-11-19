@@ -31,7 +31,7 @@ class NotificationsService extends GetxService {
 
       static const AndroidNotificationChannel _accountChannel =
       AndroidNotificationChannel(
-    'x_fashion_account',
+    'geeta_account',
     'Account Notifications',
     description: 'Notifications about your account',
     importance: Importance.high,
@@ -66,7 +66,7 @@ class NotificationsService extends GetxService {
       android: androidSettings,
       iOS: iosSettings,
     );
-
+    // click on notification on foreground
     await _localNotificationsPlugin.initialize(
       settings: initSettings,
       onDidReceiveNotificationResponse: (details) {
@@ -87,17 +87,19 @@ class NotificationsService extends GetxService {
           alert: true,
           badge: true,
           sound: true,
-        );
+        ); 
+
     FirebaseMessaging.onMessage.listen((message) async {
       await _showForegroundNotification(message);
     });
   }
 
+   // click on notification on background
   Future<void> _configureNotificationClickHandling() async {
     FirebaseMessaging.onMessageOpenedApp.listen(_handleRemoteMessageClick);
-    final _initialMessage = await _messaging.getInitialMessage();
-    if (_initialMessage != null) {
-      _handleRemoteMessageClick(_initialMessage);
+    final initialMessage = await _messaging.getInitialMessage();
+    if (initialMessage != null) {
+      _handleRemoteMessageClick(initialMessage);
     }
   }
 
@@ -106,32 +108,13 @@ class NotificationsService extends GetxService {
   void _handleRemoteMessageClick(RemoteMessage message) {
     _navigateFromData(message.data);
   }
-/*
-  Future<void> _showForegroundNotification(RemoteMessage message) async {
-    final payload = jsonEncode(message.data);
-    await _localNotificationsPlugin.show(
-      id: message.hashCode,
-      title: message.notification?.title ?? "",
-      body: message.notification?.body ?? "",
-      notificationDetails: NotificationDetails(
-        android: AndroidNotificationDetails(
-          _androidChannel.id,
-          _androidChannel.name,
-          channelDescription: _androidChannel.description,
-          importance: _androidChannel.importance,
-          priority: Priority.high,
-        ),
-        iOS: const DarwinNotificationDetails(),
-      ),
-      payload: payload,
-    );
-  }*/
-
+                                                                                                                                                                         
+// عرض الاشعار لما يكون التطبيق مفتوح
 Future<void> showLocal({
-    required String title,
-    required String body,
-    Map<String, dynamic> data = const {},
-    AppNotificationChannel channel = AppNotificationChannel.orders,
+    required String title,  // عنوان الاشعار
+    required String body, // نص الاشعار
+    Map<String, dynamic> data = const {}, // بيانات اضافية ممكن نحتاجها لما يضغط المستخدم على الاشعار
+    AppNotificationChannel channel = AppNotificationChannel.orders,   // القناة اللي ينتمي لها الاشعار
   }) async {
     try {
       final ch = _channelOf(channel);
@@ -198,9 +181,4 @@ Future<void> _showForegroundNotification(RemoteMessage message) => showLocal(
   Future<void> deleteToken() => _messaging.deleteToken();
 }
 
-/*
-instance : flutee
-* instance of AndroidNotificatinChannel / static const
-* inside initialize :
-*
-* */
+

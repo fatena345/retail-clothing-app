@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geeta/core/constants/app_colors.dart';
-import 'package:geeta/core/constants/default_values.dart';
-
 import '../../core/constants/app_fonts.dart';
-
 import '../../core/constants/app_values.dart';
-import '../custom_text.dart';
 import 'custom_text_from_field.dart';
 
 
@@ -159,43 +155,9 @@ class CustomInputField extends StatelessWidget {
         borderSide: BorderSide(color: AppColors.red),
       ),
       borderRadius: borderRadius ?? AppRadius.r8,
-      prefixIcon: /*showFlag
-          ? Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                *//*Padding(
-                   padding: EdgeInsetsDirectional.only(
-                    start: AppPaddingWidth.p12,
-                    end: AppPaddingWidth.p7,
-                    top: AppPaddingHeight.p12,
-                    bottom: AppPaddingHeight.p12,
-                  ),
-                  child: ImageView(
-                   // imagePath: AppAssets.saudiFlag,
-                    height: AppHeight.h25,
-                    width: AppWidth.w25,
-                    fit: BoxFit.cover,
-                  ),
-                ), *//*
-                CustomText(
-                  text: "+963",
-                  fontSize: AppFontSize.s14,
-                  fontWeight: AppFontWeight.bold,
-                  color: AppColors.blackText,
-                ),
-                SizedBox(width: AppWidth.w10),
-              ],
-            )
-          :*/ prefixIcon,
+      prefixIcon:  prefixIcon,
       suffixIcon:
-          suffixIcon ??
-          /*(showPercentage
-              ? Icon(Icons.percent, color: AppColors.primary, size: DefaultValues.iconSize)
-              : showClock
-              ? Transform.translate(
-                offset: const Offset(0, 12),
-                child: Icon(Icons.watch_later_outlined, color: AppColors.primary, size: DefaultValues.iconSize))
-              :*/ null,
+          suffixIcon ,
     );
   }
 }

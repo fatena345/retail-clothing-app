@@ -172,6 +172,7 @@ class AppPaddingHeight {
 }
 
 class AppWidth {
+  static double w_8 = -8.w;
   static double w1 = 1.w;
   static double w2 = 2.w;
   static double w3 = 3.0.w;

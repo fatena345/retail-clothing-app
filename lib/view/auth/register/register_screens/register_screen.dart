@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:geeta/core/constants/default_values.dart';
+import 'package:geeta/core/class/default_values.dart';
+import 'package:geeta/core/constants/enum.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:geeta/core/constants/app_colors.dart';
 import 'package:geeta/core/constants/app_string.dart';
@@ -11,36 +13,15 @@ import 'package:geeta/view/auth/register/register_controllers/register_controlle
 import 'package:geeta/view/auth/widgets/auth_form.dart';
 import 'package:geeta/view/auth/widgets/auth_header.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
 
-  RegisterScreen({super.key});
-
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  final TextEditingController email = TextEditingController();
-
-  final TextEditingController password = TextEditingController();
-
-  final TextEditingController name = TextEditingController();
+ const  RegisterScreen({super.key});
 
 
-  @override
-  void dispose() {
-    email.dispose();
-    password.dispose();
-    name.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RegisterController>(
-      init: Get.find<RegisterController>(),
       builder: (controller) {
         return Scaffold(
           body: ModalProgressHUD(
@@ -61,39 +42,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     textButton: AppString.register,
                   ),
                   AuthForm(
-                    isLogin: false,
-                    passwordController: password,
-                    emailController: email,
-                    nameController: name,
-                    pressedButton: () async {
-                      if (name.text.trim().isEmpty ||
-                          email.text.trim().isEmpty ||
-                          password.text.trim().isEmpty) {
-                        Get.snackbar(AppString.validation, AppString.validationHint);
-                        return;
-                      }
+  formKey: controller.formKey,
+  isLogin: false,
+  nameController: controller.name,
+  emailController: controller.email,
+  passwordController: controller.password,
+  commericalNameController: controller.commercialName,        
+  commericalAccountController: controller.commercialAccount,  
+  storeLicensePath: controller.storeLicensePath.text,
+  onPickFromGallery: () => controller.selectStoreLicense(ImageSource.gallery),
+  onPickFromCamera: () => controller.selectStoreLicense(ImageSource.camera),
+  pressedButton: () async {
+    if (!controller.formKey.currentState!.validate()) return;
 
-                      final success = await controller.register(
-                        name: name.text.trim(),
-                        email: email.text.trim(),
-                        password: password.text.trim(),
-                      );
+    final result = await controller.submit();
 
-                      if (success) {
-                        Get.snackbar(AppString.success, AppString.registerSuccess);
-                        await Future.delayed(const Duration(milliseconds: 500));
-                        Get.offAllNamed(AppRoutes.home);
-                      } else {
-                        Get.snackbar(
-                          AppString.failed,
-                          controller.status.message ??
-                              (controller.status.isNoInternet
-                                  ? AppString.noInternet
-                                  : AppString.wrong),
-                        );
-                      }
-                    },
-                  ),
+    switch (result) {
+      case RegisterResult.success:
+        Get.snackbar(AppString.success, AppString.registerSuccess);
+        Get.offAllNamed(AppRoutes.home);
+      case RegisterResult.savedOffline:
+        Get.snackbar(AppString.noInternet, AppString.dataStoredLocally);
+      case RegisterResult.failed:
+        Get.snackbar(
+          AppString.error,
+          controller.status.message ?? AppString.signupFailed,
+        );
+    }
+  },
+),
                 ],
               ),
             ),

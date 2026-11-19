@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:geeta/core/constants/app_fonts.dart';
 import 'package:geeta/core/constants/app_string.dart';
 import 'package:geeta/core/constants/app_values.dart';
 import 'package:geeta/core/routes/app_routes.dart';
 import 'package:geeta/widgets/custom_elevated_button.dart';
 import 'package:geeta/widgets/custom_text.dart';
-
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_images.dart';
+
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -26,8 +25,6 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
        child: Column(
-         //mainAxisSize: MainAxisSize.min,
-         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
          children: [
             SizedBox(height: AppHeight.h117,),
            CustomText(text: AppString.appTitle, fontSize: AppFontSize.s44,),

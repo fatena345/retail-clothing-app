@@ -6,17 +6,20 @@ import 'package:geeta/core/class/status_class.dart';
 import 'package:geeta/core/constants/app_string.dart';
 
 class FirebaseAuthService extends GetxService {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   User? get currentUser => _auth.currentUser;
   bool get isLoggedIn => currentUser != null;
 
-  /// يراقب تغيّر حالة تسجيل الدخول
+  
   Stream<User?> get authStateChanges => _auth.authStateChanges();
+
 
   Future<Either<StatusClass, UserCredential>> signUp({
     required String email,
     required String password,
+   
   }) {
     return _guard(
       'signUp',
@@ -50,11 +53,13 @@ class FirebaseAuthService extends GetxService {
     }
   }
 
-  /// يستمع لتجديد الـ ID Token تلقائياً (كل ~ساعة)
+
+  /// يستمع لتجديد الـ ID Token تلقائياً 
   Stream<String?> get idTokenChanges =>
       _auth.idTokenChanges().asyncMap((user) => user?.getIdToken());
 
   Future<void> logout() => _auth.signOut();
+
 
   // ---------- helper لتجنب تكرار try/catch ----------
   Future<Either<StatusClass, T>> _guard<T>(

@@ -9,7 +9,7 @@ import 'package:geeta/core/constants/app_colors.dart';
 import 'package:geeta/core/constants/app_fonts.dart';
 import 'package:geeta/core/constants/app_string.dart';
 import 'package:geeta/core/constants/app_values.dart';
-import 'package:geeta/core/constants/default_values.dart';
+import 'package:geeta/core/class/default_values.dart';
 import 'package:geeta/core/routes/app_routes.dart';
 
 import 'package:geeta/view/profile/profile_controllers/profile_controller.dart';

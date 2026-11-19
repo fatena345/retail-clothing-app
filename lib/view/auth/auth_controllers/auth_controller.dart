@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:geeta/core/constants/firestore_collections.dart';
 import 'package:geeta/core/services/token_storage.dart';
 import 'package:get/get.dart';
-import 'package:geeta/core/constants/app_constants.dart';
 import 'package:geeta/core/services/firebase/firebase_auth_service.dart';
 import 'package:geeta/core/services/firebase/firestore_service.dart';
 import 'package:geeta/core/services/firebase/notifications_service.dart';
@@ -26,7 +25,6 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // لو المستخدم مسجل دخول من قبل: كمّل الجلسة
     if (_auth.isLoggedIn) {
       startTokenListeners();
       refreshAccessToken();
@@ -35,7 +33,7 @@ class AuthController extends GetxController {
 
   // ================== Tokens ==================
 
-  /// يجيب الـ access token (Firebase ID Token) ويخزنه محلياً
+  ///access token : تخزين محلي
   Future<String?> refreshAccessToken({bool force = false}) async {
     final token = await _auth.getIdToken(forceRefresh: force);
     if (token != null && token.isNotEmpty) {
@@ -45,14 +43,15 @@ class AuthController extends GetxController {
     return token;
   }
 
-  /// يحدّث الـ fcm token محلياً وعلى Firestore
+  ///fcm token : تخزين محلي + firestore
   Future<void> updateFcmToken(String token) async {
     if (token.isEmpty) return;
-    await _tokens.updateFcmToken(token);
+    await _tokens.updateFcmToken(token); /// تخزين محلي
 
     final uid = _auth.currentUser?.uid;
     if (uid == null) return;
-
+       
+       // تخزين في Firestore
     await _firestore.setDocument(
       collectionPath: FirestoreCollections.users,
       documentId: uid,
@@ -61,11 +60,11 @@ class AuthController extends GetxController {
     );
   }
 
-  /// يجيب التوكنين ويخزنهم محلياً، وبيرجع الـ fcm token لحفظه بـ Firestore
+  /// access token : تخزين محلي, fcm token : تخزين محلي + firestore  + جلب التوكن 
   Future<String?> syncTokens() async {
     await refreshAccessToken();
     final fcm = await _notifications.getToken();
-    if (fcm != null && fcm.isNotEmpty) await _tokens.updateFcmToken(fcm);
+    if (fcm != null && fcm.isNotEmpty) await updateFcmToken(fcm);
     return fcm;
   }
 
@@ -101,7 +100,7 @@ class AuthController extends GetxController {
     final uid = _auth.currentUser?.uid;
     if (uid != null) {
       try {
-        // نحذف التوكن من السيرفر حتى ما توصل إشعارات لمستخدم خارج
+        // نحذف التوكن من فايرستور حتى ما توصل إشعارات لمستخدم خارج
         await _firestore.updateDocument(
           collectionPath: FirestoreCollections.users,
           documentId: uid,

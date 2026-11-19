@@ -8,6 +8,8 @@ class UserModel {
     this.avatarUrl,
     this.fcmToken,
     this.createdAt,
+    this.commercialName,
+    this.commercialAccount,
   });
 
   final String uid;
@@ -16,6 +18,10 @@ class UserModel {
   final String? avatarUrl;
   final String? fcmToken;
   final DateTime? createdAt;
+  final String? commercialName;
+  final String? commercialAccount;
+
+
 
   factory UserModel.fromMap(Map<String, dynamic> map) => UserModel(
         uid: map['uid'] as String,
@@ -24,6 +30,9 @@ class UserModel {
         avatarUrl: map['avatarUrl'] as String?,
         fcmToken: map['fcmToken'] as String?,
         createdAt: (map['createdAt'] as Timestamp?)?.toDate(),
+        commercialName: map['commercialName'] as String?,
+        commercialAccount: map['commercialAccount'] as String?,
+       
       );
 
   Map<String, dynamic> toCreateMap() => {
@@ -33,11 +42,13 @@ class UserModel {
         'avatarUrl': avatarUrl,
         'fcmToken': fcmToken,
         'createdAt': FieldValue.serverTimestamp(),
+        'commercialName': commercialName,
+        'commercialAccount': commercialAccount,
       };
 
-  /// للتعديل من شاشة البروفايل (بدون uid/email/createdAt/fcmToken)
   Map<String, dynamic> toProfileUpdateMap() => {
         'name': name,
         'avatarUrl': avatarUrl,
+        
       };
 }

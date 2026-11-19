@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:geeta/core/constants/app_string.dart';
 import 'package:geeta/core/constants/enum.dart';
 import 'package:geeta/core/constants/firestore_collections.dart';
 import 'package:geeta/core/services/firebase/notifications_service.dart';
 import 'package:geeta/view/auth/auth_controllers/auth_controller.dart';
 import 'package:get/get.dart';
-import 'package:flutter/foundation.dart';
 import 'package:geeta/core/class/status_class.dart';
 import 'package:geeta/core/services/firebase/firebase_auth_service.dart';
 import 'package:geeta/core/services/firebase/firestore_service.dart';
@@ -17,17 +17,24 @@ class LoginController extends GetxController {
   bool rememberMe = false;
   StatusClass status = StatusClass.initial;
 
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  final TextEditingController email = TextEditingController();
+
+  final TextEditingController password = TextEditingController();
+
   void toggleRememberMe(bool? value) {
     rememberMe = value ?? false;
     update();
   }
 
-  Future<bool> login({required String email, required String password}) async {
+  Future<bool> login() async {
     status = StatusClass.loading;
     update();
 
     // 1) Auth
-    final result = await _authService.login(email: email, password: password);
+    final result = await _authService.login(email: email.text.trim(), password: password.text.trim());
 
     final user = result.fold((error) {
       status = error;
@@ -82,4 +89,11 @@ await _notifications.showLocal(
       return false;
     }
   }
+
+
+  @override
+  void onClose() { 
+    email.dispose();
+    password.dispose();
+   }
 }

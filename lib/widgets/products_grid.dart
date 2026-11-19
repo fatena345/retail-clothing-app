@@ -7,7 +7,7 @@ import '../model/product/product_model.dart';
 class ProductsGrid extends StatelessWidget{
   final List<ProductModel> products;
 
-  ProductsGrid({required this.products, });
+  const ProductsGrid({required this.products, super.key});
   @override
   Widget build(BuildContext context) {
     return GridView.builder(

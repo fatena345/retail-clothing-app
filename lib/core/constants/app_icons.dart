@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geeta/core/constants/app_colors.dart';
 import 'package:geeta/core/constants/app_values.dart';
 
-import 'default_values.dart';
+import '../class/default_values.dart';
 
 class AppIcons {
 
@@ -14,6 +14,12 @@ class AppIcons {
   static final Icon email = Icon(Icons.email_outlined, size:DefaultValues.iconInputFeildSize, color: AppColors.blackText,);
   static final  Icon password = Icon(Icons.lock_outline, size:DefaultValues.iconInputFeildSize, color: AppColors.blackText);
   static final Icon person = Icon(Icons.person_outline_rounded, size:DefaultValues.iconInputFeildSize, color: AppColors.blackText);
+  static final Icon commericalName = Icon(Icons.store_outlined, size:DefaultValues.iconInputFeildSize, color: AppColors.blackText);
+  static final Icon commericalAccount = Icon(Icons.account_balance_outlined, size:DefaultValues.iconInputFeildSize, color: AppColors.blackText);
+  static final Icon storeLicense = Icon(Icons.file_present_outlined, size:DefaultValues.iconInputFeildSize, color: AppColors.blackText);
+  static final Icon camera = Icon(Icons.camera_alt_outlined, size:DefaultValues.iconInputFeildSize, color: AppColors.blackText);
+  static final Icon gallery = Icon(Icons.photo_library_outlined, size:DefaultValues.iconInputFeildSize, color: AppColors.blackText);
+
 
   // home icons
   static final Icon notifications = Icon(Icons.notifications_none, size:  DefaultValues.iconSize,);
